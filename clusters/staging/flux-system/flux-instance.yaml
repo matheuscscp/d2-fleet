@@ -29,6 +29,20 @@ spec:
     patches:
       - target:
           kind: Deployment
+          name: kustomize-controller
+        patch: |
+          - op: replace
+            path: /spec/template/spec/containers/0/image
+            value: ghcr.io/fluxcd/kustomize-controller:rc-56d3ffb8
+      - target:
+          kind: Deployment
+          name: helm-controller
+        patch: |
+          - op: replace
+            path: /spec/template/spec/containers/0/image
+            value: ghcr.io/fluxcd/helm-controller:rc-93880f81
+      - target:
+          kind: Deployment
           name: "(kustomize-controller|helm-controller)"
         patch: |
           - op: add
